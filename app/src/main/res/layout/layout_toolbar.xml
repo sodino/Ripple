@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- if android:background doesn't specified. ripple will be drawn outside LinearLayout bounds. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@android:color/background_dark"
+    android:gravity="center_vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/home"
+        android:background="@drawable/ripple_with_no_child_layers_or_mask"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/contact"
+        android:background="@drawable/ripple_with_no_child_layers_or_mask"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cart"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/cart"
+        android:background="@drawable/ripple_with_no_child_layers_or_mask"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mine"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/mine"
+        android:background="@drawable/ripple_with_no_child_layers_or_mask"/>
+</LinearLayout>

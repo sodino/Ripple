@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Ripple  --  by Sodino</string>
+    <string name="create_question">提问题</string>
+    <string name="push_weibo">发微博</string>
+</resources>
