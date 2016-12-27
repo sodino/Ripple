@@ -81,14 +81,14 @@ public class RippleAdapter extends RecyclerView.Adapter<RippleHolder> implements
             case RIPPLE_COMPATIBLE_WITH_ClickableSpan:{
                 rippleID = R.drawable.ripple_with_color_red_and_mask;
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-                String str = "Ripple Compatible With ClickableSpan";
+                String str = "Ripple Compatible With ClickableSpan "; // a 'space' at the end of string is required. pressed the tail of list_item can perform ripple effect.
                 SpannableStringBuilder ssBuilder = new SpannableStringBuilder(str);
                 ssBuilder.setSpan(new ClickableSpan() {
                     @Override
                     public void onClick(View widget) {
                         Toast.makeText(widget.getContext(), "U click me!", Toast.LENGTH_SHORT).show();
                     }
-                }, str.length() - 13, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }, str.length() - 14, str.length() -1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // '-1' for 'space' of end.
                 charsequence = ssBuilder;
             }break;
         }
