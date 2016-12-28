@@ -1,5 +1,5 @@
 # Ripple
-A ripple effect demo
+A Ripple effect demo
 
 
 
@@ -7,25 +7,35 @@ GitHub源码:[Ripple Demo](https://github.com/sodino/Ripple/)
 RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/reference/android/graphics/drawable/RippleDrawable.html)  
 效果图如下:
 
-![ripple_effect](preview.gif)
+![Ripple_effect](preview.gif)
+
+
 
 --------------
 
-# ripple效果的设置
+# Ripple效果的设置
 
 可以在XML布局文件中对 `View` 的 `android:background` 属性进行赋值.  
-`android:foreground` 的ripple支持仅支持 `FrameLayout` 或其子类如support-v7中的 `CardView`.  
-`android:foreground` 的ripple使用场景为当点击不透明的`Image`时,见效果图中的`Ripple by 'foreground' Only FrameLayout Support`  
+`android:foreground` 的Ripple支持仅支持 `FrameLayout` 或其子类如support-v7中的 `CardView`.  
+`android:foreground` 的Ripple使用场景为当点击不透明的`Image`时,见效果图中的`Ripple by 'foreground' Only FrameLayout Support`  
 也可以在代码中动态设置.  
-![ripple_setting](http://ww2.sinaimg.cn/mw1024/e3dc9ceagw1fb6benb32cj20k50gltdb.jpg)
+![Ripple_setting](http://ww2.sinaimg.cn/mw1024/e3dc9ceagw1fb6benb32cj20k50gltdb.jpg)
 
 --------------
-# ripple的生效
+# Ripple的生效
 
-当 `View` 有设置 `OnClickListener` 的情况下被点击, 或者获得/失去焦点变化时,将出现ripple效果.
+当 `View` 有设置 `OnClickListener` 的情况下被点击, 或者获得/失去焦点变化时,将出现Ripple效果.
+
 
 --------------
-# 无边界的ripple (unbounded ripple)  
+
+# 不适用Ripple的场景
+
+* 点击之后就立马消失的组件(setVisibility:gone invisible 或 remove).      
+  因为当组件恢复为`visiable`后，未播放完的`Ripple`动画会继续播放，会产生疑惑。
+
+--------------
+# 无边界的Ripple (unbounded ripple)  
 
 见效果图中第一行`Ripple NO Child Layers or Mask` (/drawable/ripple.xml)
 
@@ -43,10 +53,10 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 
 ---------------
 
-# 硬件加速开关对无边界ripple的影响
+# 硬件加速开关对无边界Ripple的影响
 
 在Android 3.0 (API level 11)引入的硬件加速功能默认在application/Activity/View这三个层级上都是开启的。  
-但如果手贱关闭了，则无边界ripple不会生效。   
+但如果手贱关闭了，则无边界`Ripple`不会生效。   
 见效果图中的第二行`Ripple NO Child Layers or Mask but HARDWARE OFF`
 
 ---------------
@@ -54,9 +64,9 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 # 子层(Child Layer)
 
 由于`View`在不同的交互下有不同的`state`,常见的为`pressed`和'focused'或`normal`这三种状态.  
-所以`ripple`通过多个`item`来表示不同`state`下的显示,每个`item`都是一个子层(Child Layer),能够直接显示`color`、`shape`、`drawable/image` 及 `selector`.  
+所以`Ripple`通过多个`item`来表示不同`state`下的显示,每个`item`都是一个子层(Child Layer),能够直接显示`color`、`shape`、`drawable/image` 及 `selector`.  
 
-当`ripple`存在一个或多个子层时,则`ripple`效果则被限定在当前`View`的边界内了.无边界效果(unbounded ripple)失效.
+当`Ripple`存在一个或多个子层时,则`ripple`效果则被限定在当前`View`的边界内了.无边界效果(unbounded ripple)失效.
 
 ````
 // ↓↓↓ Ripple With Child Layer(Color Red) and Mask
@@ -99,13 +109,13 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 ---------------
 
 # Mask层(Mask Layer)
-可以设置指定子层`item`的`android:id="@android:id/mask"来设定当前`ripple`的`Mask`.  
-`Mask`的内容并不会被绘制到屏幕上.它的作用是限定`ripple`效果的绘制区域.
-* mask的子层限制了`ripple`效果的最大范围只能是`View`的边界,不会扩散到父组件.
+可以设置指定子层`item`的`android:id="@android:id/mask"来设定当前`Ripple`的`Mask`.  
+`Mask`的内容并不会被绘制到屏幕上.它的作用是限定`Ripple`效果的绘制区域.
+* mask所在的的子层限制了`Ripple`效果的最大范围只能是`View`的边界,不会扩散到父组件.
 * 控制`ripple`效果区域的细节显示.  
   细节显示可以通过`Ripple With Picture and Mask`来理解.本处中用于显示的是一张背景透明的彩色`Google`图片,但`Ripple`的扩散过程中只在有颜色的区域中慢慢扩散,透明区域则仍是透明.
 
-![google.png](app\src\main\res\drawable\google.png)  
+![google.png](https://raw.githubusercontent.com/sodino/Ripple/master/app/src/main/res/drawable/google.png)  
 ![preview](http://ww1.sinaimg.cn/mw690/e3dc9ceagw1fb6dc49h7aj20u109cwfv.jpg)
 
   
