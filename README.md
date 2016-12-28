@@ -109,7 +109,7 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 ---------------
 
 # Mask层(Mask Layer)
-可以设置指定子层`item`的`android:id="@android:id/mask"来设定当前`Ripple`的`Mask`.  
+可以设置指定子层`item`的`android:id="@android:id/mask"`来设定当前`Ripple`的`Mask`.  
 `Mask`的内容并不会被绘制到屏幕上.它的作用是限定`Ripple`效果的绘制区域.
 * mask所在的的子层限制了`Ripple`效果的最大范围只能是`View`的边界,不会扩散到父组件.
 * 控制`ripple`效果区域的细节显示.  
