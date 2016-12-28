@@ -175,3 +175,6 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 
 当然,在Demo中,为了进一步简化,直接把`LinkedMovementMethod::onTouchEvent()`写到了`RippleTextView::onTouchEvent()`中去.具体见[源码](https://github.com/sodino/Ripple/blob/master/app/src/main/java/com/sodino/ripple/RippleTextView.java).
 
+------
+
+[About Sodino](http://sodino.com)
