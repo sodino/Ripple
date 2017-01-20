@@ -1,4 +1,4 @@
-# Ripple
+# Ripple  
 A Ripple effect demo
 
 
@@ -13,7 +13,7 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 
 --------------
 
-# Ripple效果的设置
+# Ripple效果的设置  
 
 可以在XML布局文件中对 `View` 的 `android:background` 属性进行赋值.  
 `android:foreground` 的Ripple支持仅支持 `FrameLayout` 或其子类如support-v7中的 `CardView`.  
@@ -22,14 +22,14 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 ![Ripple_setting](http://ww2.sinaimg.cn/mw1024/e3dc9ceagw1fb6benb32cj20k50gltdb.jpg)
 
 --------------
-# Ripple的生效
+# Ripple的生效  
 
 当 `View` 有设置 `OnClickListener` 的情况下被点击, 或者获得/失去焦点变化时,将出现Ripple效果.
 
 
 --------------
 
-# 不适用Ripple的场景
+# 不适用Ripple的场景  
 
 * 点击之后就立马消失的组件(setVisibility:gone invisible 或 remove).      
   因为当组件恢复为`visiable`后，未播放完的`Ripple`动画会继续播放，会产生疑惑。
@@ -40,8 +40,8 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 见效果图中第一行`Ripple NO Child Layers or Mask` (/drawable/ripple.xml)
 
 ````  
- <!-- An unbounded red ripple. --/>
- <ripple android:color="#ffff0000" />
+    <!-- An unbounded red ripple. --/>
+    <ripple android:color="#ffff0000" />
 ````  
 
 当`ripple`标签内只指定一个`android:color`属性时，则该`ripple`效果的绘制会溢出其所在`View`的边界，直接绘制在父控件的背景之上。  
@@ -53,7 +53,7 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 
 ---------------
 
-# 硬件加速开关对无边界Ripple的影响
+# 硬件加速开关对无边界Ripple的影响  
 
 在Android 3.0 (API level 11)引入的硬件加速功能默认在application/Activity/View这三个层级上都是开启的。  
 但如果手贱关闭了，则无边界`Ripple`不会生效。   
@@ -61,7 +61,7 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 
 ---------------
 
-# 子层(Child Layer)
+# 子层(Child Layer)   
 
 由于`View`在不同的交互下有不同的`state`,常见的为`pressed`和'focused'或`normal`这三种状态.  
 所以`Ripple`通过多个`item`来表示不同`state`下的显示,每个`item`都是一个子层(Child Layer),能够直接显示`color`、`shape`、`drawable/image` 及 `selector`.  
@@ -108,7 +108,7 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 
 ---------------
 
-# Mask层(Mask Layer)
+# Mask层(Mask Layer)  
 可以设置指定子层`item`的`android:id="@android:id/mask"`来设定当前`Ripple`的`Mask`.  
 `Mask`的内容并不会被绘制到屏幕上.它的作用是限定`Ripple`效果的绘制区域.
 * mask所在的的子层限制了`Ripple`效果的最大范围只能是`View`的边界,不会扩散到父组件.
@@ -122,7 +122,7 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 
 ---------------
 
-# 与ClickableSpan冲突  
+# 与ClickableSpan冲突   
 
 如果`Layout`有包含`ClickableSpan`的`TextView`,则发现该`Layout`设置`Ripple`的效果无法响应.        
 这个现象可以推断出`MotionEvent`这个事件在`TextView`这一层级被消耗完了.下一步应该为找出该事件为什么被消耗?     
@@ -174,6 +174,24 @@ RippleDrawable官方文档链接:[RippleDrawable](https://developer.android.com/
 ````
 
 当然,在Demo中,为了进一步简化,直接把`LinkedMovementMethod::onTouchEvent()`写到了`RippleTextView::onTouchEvent()`中去.具体见[源码](https://github.com/sodino/Ripple/blob/master/app/src/main/java/com/sodino/ripple/RippleTextView.java).
+
+
+
+---------------
+
+# Ripple动画的自动播放
+
+
+````
+// 开始自动播放
+rippleDrawable.setState(new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled});
+
+// 恢复初始状态
+rippleDrawable.setState(new int[]{android.R.attr.state_enabled});
+````
+
+原理见源码:  
+![theory](http://wx1.sinaimg.cn/mw1024/e3dc9ceagy1fbxbi4alcuj20jh0gpdhh.jpg)
 
 ------
 

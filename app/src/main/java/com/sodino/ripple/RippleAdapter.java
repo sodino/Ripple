@@ -3,6 +3,7 @@ package com.sodino.ripple;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.RippleDrawable;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -101,9 +102,42 @@ public class RippleAdapter extends RecyclerView.Adapter<RippleHolder> implements
         } else {
             v.setBackground(rippleDrawable);
         }
+
+        if (viewType == RIPPLE_WITH_PICTURE_MASK) {
+            animRipple(rippleDrawable);
+        }
         RippleHolder holder = new RippleHolder(v, charsequence);
         v.setTag(holder);
         return holder;
+    }
+
+    private void animRipple(final RippleDrawable ripple) {
+        final int MAX = 100;
+        final long delay = 2000;
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            static final int NORMAL = 0;
+            static final int ANIM = 1;
+            int state = NORMAL;
+            int count = 0;
+            @Override
+            public void run() {
+                if (count > MAX) {
+                    return;
+                }
+                count ++;
+                if (state == NORMAL) {
+                    ripple.setState(new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled});
+
+                    state = ANIM;
+                } else {
+                    ripple.setState(new int[]{android.R.attr.state_enabled});
+                    state = NORMAL;
+                }
+
+               handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
     @Override
